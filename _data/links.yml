@@ -1,0 +1,7 @@
+- name: doyzfly
+  url: http://doyzfly.github.io
+  src: www
+
+- name: 阮一峰的网络日志
+  url: http://www.ruanyifeng.com/blog/
+  src: www
