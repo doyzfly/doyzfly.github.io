@@ -1,19 +1,14 @@
 - name: Software Engineer Keywords
   keywords:
-      - Java
-      - C++
+      - Golang
       - Python
+      - C++
       - Design Patterns
+      - LVS
+      - Nginx
 
-- name: Mobile Developer Keywords
+- name: Network Keywords
   keywords:
-      - Android
-      - Reverse Engineering
+      - TCP/IP
+      - OSPF
 
-- name: Windows Developer Keywords
-  keywords:
-      - Win32 SDK
-      - DuiLib
-      - WTL
-      - COM
-      - WinDbg

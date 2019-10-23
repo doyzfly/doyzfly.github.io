@@ -5,3 +5,7 @@
 - name: 阮一峰的网络日志
   url: http://www.ruanyifeng.com/blog/
   src: www
+
+- name: 码志
+  url: http://mazhuang.org
+  src: life
