@@ -19,13 +19,14 @@ keywords: Linux
 ### netstat
 用于查询服务器TCP/UDP相关的内容，包括提供服务的端口信息，维持的连接信息。  
 该命令默认可能没有安装，ubuntu系统安装命令为：  
-    ```bash
-    sudo apt install net-tools
-    ```
+```bash
+sudo apt install net-tools
+```
+
 ubuntu系统安装命令为： 
-    ```bash
-    sudo yum install -y net-tools
-    ```
+```bash
+sudo yum install -y net-tools
+```
 
 - 查看服务器当前提供TCP服务的端口信息  
     ```bash
