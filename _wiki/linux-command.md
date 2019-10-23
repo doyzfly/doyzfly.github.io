@@ -10,24 +10,24 @@ keywords: Linux
 ### find
 用于查找文件，例子：
 - 查找 /root 目录下大于100M的文件
-```bash
-find ./root -size +100M
-```
+    ```bash
+    find ./root -size +100M
+    ```
 
 ## 网络相关
 
 ### netstat
 用于查询服务器TCP/UDP相关的内容，包括提供服务的端口信息，维持的连接信息。  
 该命令默认可能没有安装，ubuntu系统安装命令为：  
-```bash
-sudo apt install net-tools
-```
+    ```bash
+    sudo apt install net-tools
+    ```
 ubuntu系统安装命令为： 
-```bash
-sudo yum install -y net-tools
-```
+    ```bash
+    sudo yum install -y net-tools
+    ```
 
-- 查看服务器当前提供TCP服务的端口信息
+- 查看服务器当前提供TCP服务的端口信息  
     ```bash
     sudo netstat -nltp
 
@@ -46,7 +46,7 @@ sudo yum install -y net-tools
     tcp6       0      0 :::4000                 :::*                    LISTEN      1281/websock_rtsp_p
     ```
 
-- 查看服务器当前提供TCP服务的端口信息
+- 查看服务器当前提供TCP服务的端口信息  
     ```bash
     sudo netstat -nlup
 
@@ -61,7 +61,7 @@ sudo yum install -y net-tools
     udp6       0      0 :::36924                :::*                                864/avahi-daemon: r
     ```
 
-- 查看服务器维持的TCP连接信息
+- 查看服务器维持的TCP连接信息  
     ```bash
     sudo netstat -nat
 
@@ -83,7 +83,7 @@ sudo yum install -y net-tools
 
 
 
-- 查看服务器维持的TCP连接的统计信息
+- 查看服务器维持的TCP连接的统计信息  
     ```bash
     sudo netstat -ant | awk '{++s[$NF]} END {for(k in s) print k,s[k]}'
 
