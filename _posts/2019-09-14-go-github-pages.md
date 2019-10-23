@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 开始 Blog
-categories: tools
+categories: others
 description: 使用Github Pages，开始 Blog
 keywords: 使用Github Pages, Blog
 ---
