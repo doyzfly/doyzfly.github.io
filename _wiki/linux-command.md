@@ -3,7 +3,7 @@ layout: wiki
 title: 常用的 Linux 命令
 categories: linux
 description: 个人常用的 Linux 命令。
-keywords: Linux
+keywords: linux
 ---
 
 ## 常用命令

@@ -5,8 +5,8 @@ baseurl:
 url: https://doyzfly.github.io
 date_format: "ordinal"
 title: 待定
-subtitle: "不告诉你"
-description: "moonchild的个人博客"
+subtitle: "大龄程序员学习笔记"
+description: "doyzfly的个人博客"
 keywords: doyzfly, moonchild
 timezone: Asia/Shanghai
 encoding: "utf-8"
