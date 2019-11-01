@@ -146,43 +146,43 @@ break [name] <linespec>
 ```
 
 1. 在 main 处设置一个断点，break 的参数可以是 funcs 查看等到的 func name  
-```bash
-break main.main
-```
-  
-```bash
-(dlv) break main.main
-Breakpoint 1 set at 0x1331513 for main.main() ./main.go:15
-```
+    ```bash
+    break main.main
+    ```
+    
+    ```bash
+    (dlv) break main.main
+    Breakpoint 1 set at 0x1331513 for main.main() ./main.go:15
+    ```
   
 2. 设置断点的另外一种方式  
-```bash
-<filename>:<line>  
-```
-  
-```bash
-(dlv) break ./main.go:15
-Breakpoint 1 set at 0x1331513 for main.main() ./main.go:15
-```
+    ```bash
+    <filename>:<line>  
+    ```
+    
+    ```bash
+    (dlv) break ./main.go:15
+    Breakpoint 1 set at 0x1331513 for main.main() ./main.go:15
+    ```
 
 3. linespec 支持的完整形式
-[linespec说明](https://github.com/go-delve/delve/blob/master/Documentation/cli/locspec.md)  
+    [linespec说明](https://github.com/go-delve/delve/blob/master/Documentation/cli/locspec.md)  
 
-```bash
-*<address> Specifies the location of memory address address. address can be specified as a decimal, hexadecimal or octal number
+    ```bash
+    *<address> Specifies the location of memory address address. address can be specified as a decimal, hexadecimal or octal number
 
-<filename>:<line> Specifies the line line in filename. filename can be the partial path to a file or even just the base name as long as the expression remains unambiguous.
+    <filename>:<line> Specifies the line line in filename. filename can be the partial path to a file or even just the base name as long as the expression remains unambiguous.
 
-<line> Specifies the line line in the current file
+    <line> Specifies the line line in the current file
 
-+<offset> Specifies the line offset lines after the current one
+    +<offset> Specifies the line offset lines after the current one
 
--<offset> Specifies the line offset lines before the current one
+    -<offset> Specifies the line offset lines before the current one
 
-<function>[:<line>] Specifies the line line inside function. The full syntax for function is <package>.(*<receiver type>).<function name> however the only required element is the function name, everything else can be omitted as long as the expression remains unambiguous. For setting a breakpoint on an init function (ex: main.init), the <filename>:<line> syntax should be used to break in the correct init function at the correct location.
+    <function>[:<line>] Specifies the line line inside function. The full syntax for function is <package>.(*<receiver type>).<function name> however the only required element is the function name, everything else can be omitted as long as the expression remains unambiguous. For setting a breakpoint on an init function (ex: main.init), the <filename>:<line> syntax should be used to break in the correct init function at the correct location.
 
-/<regex>/ Specifies the location of all the functions matching regex
-```
+    /<regex>/ Specifies the location of all the functions matching regex
+    ```
 
 
 ### 运行至断点
@@ -209,58 +209,58 @@ continue
 ### 打印变量
 1. 可以继续设置断点至 ServeHTTP 函数，并执行 continue 开启 Web Server 服务  
 
-```bash
-(dlv) break main.(*helloHandler).ServeHTTP
-Breakpoint 2 set at 0x1331443 for main.(*helloHandler).ServeHTTP() ./main.go:11
-(dlv) c
-```
+    ```bash
+    (dlv) break main.(*helloHandler).ServeHTTP
+    Breakpoint 2 set at 0x1331443 for main.(*helloHandler).ServeHTTP() ./main.go:11
+    (dlv) c
+    ```
   
 2. 访问 Web Server
-这时候 Web Server 的 Delve 需要输入  
-```bash
-➜  curl http://localhost:8000
-Hello, world!%
-```
+    这时候 Web Server 的 Delve 需要输入  
+    ```bash
+    ➜  curl http://localhost:8000
+    Hello, world!%
+    ```
 
 3. 在执行至断点 ServeHTTP 时，可输入 print 查询变量
-- 输入 n 回车，单步执行，
-- 输入 args 打印出所有的方法参数信息
-- 输入 locals 打印所有的本地变量
-  
-```bash
-(dlv) c
-> main.(*helloHandler).ServeHTTP() ./main.go:11 (hits goroutine(26):1 total:13) (PC: 0x1331443)
-     6:
-     7:	const endpoint = ":8000"
-     8:
-     9:	type helloHandler struct{}
-    10:
-=>  11:	func (h *helloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-    12:		w.Write([]byte("Hello, world!"))
-    13:	}
-    14:
-    15:	func main() {
-    16:		http.Handle("/", &helloHandler{})
-(dlv) n
-> main.(*helloHandler).ServeHTTP() ./main.go:12 (PC: 0x1331451)
-     7:	const endpoint = ":8000"
-     8:
-     9:	type helloHandler struct{}
-    10:
-    11:	func (h *helloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-=>  12:		w.Write([]byte("Hello, world!"))
-    13:	}
-    14:
-    15:	func main() {
-    16:		http.Handle("/", &helloHandler{})
-    17:		http.ListenAndServe(endpoint, nil)
-(dlv) args
-h = (*main.helloHandler)(0x16485d0)
-w = net/http.ResponseWriter(*net/http.response) 0xc00010b998
-r = ("*net/http.Request")(0xc0001c0200)
-(dlv) locals
-(no locals)
-(dlv) print r.Method
-"GET"
-(dlv)
-```
+    - 输入 n 回车，单步执行，
+    - 输入 args 打印出所有的方法参数信息
+    - 输入 locals 打印所有的本地变量
+    
+    ```bash
+    (dlv) c
+    > main.(*helloHandler).ServeHTTP() ./main.go:11 (hits goroutine(26):1 total:13) (PC: 0x1331443)
+        6:
+        7:	const endpoint = ":8000"
+        8:
+        9:	type helloHandler struct{}
+        10:
+    =>  11:	func (h *helloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+        12:		w.Write([]byte("Hello, world!"))
+        13:	}
+        14:
+        15:	func main() {
+        16:		http.Handle("/", &helloHandler{})
+    (dlv) n
+    > main.(*helloHandler).ServeHTTP() ./main.go:12 (PC: 0x1331451)
+        7:	const endpoint = ":8000"
+        8:
+        9:	type helloHandler struct{}
+        10:
+        11:	func (h *helloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+    =>  12:		w.Write([]byte("Hello, world!"))
+        13:	}
+        14:
+        15:	func main() {
+        16:		http.Handle("/", &helloHandler{})
+        17:		http.ListenAndServe(endpoint, nil)
+    (dlv) args
+    h = (*main.helloHandler)(0x16485d0)
+    w = net/http.ResponseWriter(*net/http.response) 0xc00010b998
+    r = ("*net/http.Request")(0xc0001c0200)
+    (dlv) locals
+    (no locals)
+    (dlv) print r.Method
+    "GET"
+    (dlv)
+    ```
