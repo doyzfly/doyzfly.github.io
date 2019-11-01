@@ -17,7 +17,8 @@ Delve 是一款很不错的 Golang 调试工具，可以实现类似 Visual Stud
 go get -u github.com/go-delve/delve/cmd/dlv
 ```
 
-## Delve 常用命令
+## Delve 常用命令  
+
 | 命令 | 功能 | 
 | :----- | :----- | 
 | dlv attach | 后面跟 pid，用来 Debug 编译好的 Golang 程序 |
@@ -98,9 +99,10 @@ The following commands are available:
 Type help followed by a command for full documentation.
 ```
 
-在这个交换环境下可以进行断点调试，支持的命令主要有：    
+在这个交换环境下可以进行断点调试，支持的命令主要有：  
+
 | 命令 | alias | 功能 | 
-| :-----| :----- | :----- | 
+| :----- | :----- | :----- | 
 | break | b | 设置断点 |
 | continue | c | 运行至断点 |
 | print | p | 打印变量 |
