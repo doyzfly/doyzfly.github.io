@@ -154,8 +154,10 @@ Breakpoint 1 set at 0x1331513 for main.main() ./main.go:15
 ```
   
 2. 设置断点的另外一种方式  
+```bash
 <filename>:<line>  
-
+```
+  
 ```bash
 (dlv) break ./main.go:15
 Breakpoint 1 set at 0x1331513 for main.main() ./main.go:15
