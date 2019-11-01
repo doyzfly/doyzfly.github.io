@@ -98,7 +98,7 @@ The following commands are available:
 Type help followed by a command for full documentation.
 ```
 
-在这个交换环境下可以进行断点调试，支持的命令主要有：
+在这个交换环境下可以进行断点调试，支持的命令主要有：    
 | 命令 | alias | 功能 | 
 | :-----| :----- | :----- | 
 | break | b | 设置断点 |
@@ -106,7 +106,7 @@ Type help followed by a command for full documentation.
 | print | p | 打印变量 |
 | funcs |  | 显示支持的函数 |
 
-### 查看包名/函数名包含 main 的函数
+### 查看包名/函数名包含 main 的函数  
 ```bash
 funcs main
 ```
@@ -130,35 +130,40 @@ runtime.main.func2
 type..eq.internal/x/net/http/httpproxy.domainMatch
 type..hash.internal/x/net/http/httpproxy.domainMatch
 ```
-funcs [param] 默认是返回包含 param 的func，可以看到 main package 包含3个 func
+  
+funcs [param] 默认是返回包含 param 的func，可以看到 main package 包含3个 func  
 ```bash
 main.(*helloHandler).ServeHTTP
 main.init
 main.main
 ```
 
-### 设置断点
+### 设置断点  
 ```bash
 break [name] <linespec>
 ```
 
-1. 在 main 处设置一个断点，break 的参数可以是 funcs 查看等到的 func name
+1. 在 main 处设置一个断点，break 的参数可以是 funcs 查看等到的 func name  
 ```bash
 break main.main
 ```
+  
 ```bash
 (dlv) break main.main
 Breakpoint 1 set at 0x1331513 for main.main() ./main.go:15
 ```
-2. 设置断点的另外一种方式
-<filename>:<line>
+  
+2. 设置断点的另外一种方式  
+<filename>:<line>  
+
 ```bash
 (dlv) break ./main.go:15
 Breakpoint 1 set at 0x1331513 for main.main() ./main.go:15
 ```
 
 3. linespec 支持的完整形式
-[linespec说明](https://github.com/go-delve/delve/blob/master/Documentation/cli/locspec.md)
+[linespec说明](https://github.com/go-delve/delve/blob/master/Documentation/cli/locspec.md)  
+
 ```bash
 *<address> Specifies the location of memory address address. address can be specified as a decimal, hexadecimal or octal number
 
@@ -177,10 +182,12 @@ Breakpoint 1 set at 0x1331513 for main.main() ./main.go:15
 
 
 ### 运行至断点
-continue 命令运行至断点
+continue 命令运行至断点  
+
 ```bash
 continue
 ```
+  
 ```bash
 (dlv) continue
 > main.main() ./main.go:15 (hits goroutine(1):1 total:1) (PC: 0x1331513)
@@ -196,16 +203,16 @@ continue
 ```
 
 ### 打印变量
-1. 可以继续设置断点至 ServeHTTP 函数，并执行 continue 开启 Web Server 服务
+1. 可以继续设置断点至 ServeHTTP 函数，并执行 continue 开启 Web Server 服务  
+
 ```bash
 (dlv) break main.(*helloHandler).ServeHTTP
 Breakpoint 2 set at 0x1331443 for main.(*helloHandler).ServeHTTP() ./main.go:11
 (dlv) c
-
 ```
-
+  
 2. 访问 Web Server
-这时候 Web Server 的 Delve 需要输入
+这时候 Web Server 的 Delve 需要输入  
 ```bash
 ➜  curl http://localhost:8000
 Hello, world!%
@@ -215,6 +222,7 @@ Hello, world!%
 - 输入 n 回车，单步执行，
 - 输入 args 打印出所有的方法参数信息
 - 输入 locals 打印所有的本地变量
+  
 ```bash
 (dlv) c
 > main.(*helloHandler).ServeHTTP() ./main.go:11 (hits goroutine(26):1 total:13) (PC: 0x1331443)
