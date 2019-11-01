@@ -19,7 +19,7 @@ go get -u github.com/go-delve/delve/cmd/dlv
 
 ## Delve 常用命令
 | 命令 | 功能 | 
-| :-----| :----- | 
+| :----- | :----- | 
 | dlv attach | 后面跟 pid，用来 Debug 编译好的 Golang 程序 |
 | dlv core | 用于 coredump |
 | dlv debug | 后面跟要调试的 go 文件，进入 Debug |
