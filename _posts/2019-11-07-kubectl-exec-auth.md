@@ -20,7 +20,7 @@ error: unable to upgrade connection: Forbidden (user=system:anonymous, verb=crea
 ## 分析问题
 - 从返回的错误信息来看，应该是访问权限的问题，是 kubectl 执行权限问题？但是执行 kubectl get pods 等命令时又能正常返回。
     ```bash
-    kubectl get pods
+    #kubectl get pods
     NAME                                READY   STATUS    RESTARTS   AGE
     frontend-22hmh                      1/1     Running   0          73d
     frontend-4cpbk                      1/1     Running   0          73d
@@ -30,7 +30,7 @@ error: unable to upgrade connection: Forbidden (user=system:anonymous, verb=crea
     redis-slave-jm86r                   1/1     Running   1          73d
     ```  
     **原因**  
-    使用 kubectl exec 命令时，会转到kubelet，需要对 apiserver 调用 kubelet API 的授权。所以跟 kubectl 的其他命令又些区别。  
+    使用 kubectl exec 命令时，会转到kubelet，需要对 apiserver 调用 kubelet API 的授权。所以跟 kubectl 的其他命令有些区别。  
 
 ## 解决办法
 1. 解决办法1:
