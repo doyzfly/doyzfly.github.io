@@ -20,7 +20,7 @@ H.264，又称为MPEG-4第10部分，高级视频编码（英语：MPEG-4 Part 1
 在线视频兴起之前，互联网上看片的主要方式是下载到电脑后观看。比如下载了一个 ```test.mp4``` 的视频，这个 ```mp4``` 是一个容器，又叫封装格式,就是把已经编码封装好的视频、音频按照一定的规范放到一起。常见的容器格式有： avi, mp4, mov, ts, mkv, rmvb/rm, wmv, flv, 3gp, asf, webm 。
 裸视频是非常大的，所以需要对视频做编码压缩，常见的视频编码格式有： mpeg-1, mpeg-2, mpeg-4, H.264/AVC/mpeg-4part 10, h.265/hevc, vc-1, RealVideo, AVS 。
 
-<img src="/images/posts/H.264/01.png"></img>
+<img src="/images/posts/h264/01.png"></img>
 
 
 ## H.264 视频编码
@@ -30,9 +30,9 @@ H.264，又称为MPEG-4第10部分，高级视频编码（英语：MPEG-4 Part 1
 ### 简介
 H.264 编码功能分为两层，VCL(视频编码层/Video Coding Layer)和 NAL(网络提取层/Network Abstraction Layer)。VCL 主要分为 5 部分： 帧间和帧内预测（Estimation）、变换（Transform）和反变换、量化（Quantization）和反量化、环路滤波（Loop Filter）、熵编码（Entropy Coding）。VCL 负责怎么高效的进行编码，编码后的数据怎么进行存储和传输由 NAL 来负责，存到了NAL单元（NALU）。一帧图片经过 H.264 编码器之后，就被编码为一个或多个片（slice），而装载着这些片（slice）的载体，就是 NALU 了。片（slice）是 H.264 中提出的新概念，是通过编码图片后切分通过高效的方式整合出来的概念，一张图片至少有一个或多个片（slice）。除了装载编码数据的slice，有些NALU装载了编码的一些 meta 信息，比如 SPS(Sequence parameter set), PPS(Picture parameter set)。
 
-<img src="/images/posts/H.264/h264-frametoNALU.png"></img>
+<img src="/images/posts/h264/h264-frametoNALU.png"></img>
 
-<img src="/images/posts/H.264/h264-frametoNALU-2.png"></img>
+<img src="/images/posts/h264/h264-frametoNALU-2.png"></img>
 
 - 1 Frame (帧) = 1..n个Slice (片)1 Slice (片) = 1..n个Marcoblock(宏块)1 Marcoblock(宏块) = 16x16yuv数据
 - 1 Slice (片) = Slice Header + Slice Data
@@ -42,7 +42,7 @@ H.264 编码功能分为两层，VCL(视频编码层/Video Coding Layer)和 NAL(
 ### NALU
 H.264的结构全部都是以 NALU 为主，理解了 NALU，就理解了 H.264 的结构。一个 NALU 由 NAL头+RBSP组成。一个原始的 H.264 NALU 单元常由 ```[StartCode] [NALU Header] [NALU Payload]``` 三部分组成，其中 Start Code 用于标示这是一个 NALU 单元的开始，必须是 ```00 00 00 01``` 或 ```00 00 01``` 。
 
-<img src="/images/posts/H.264/minimal_yuv420_hex.png"></img>
+<img src="/images/posts/h264/minimal_yuv420_hex.png"></img>
 
 ### NALU Header
 NAL Header 由三部分组成，F/forbidden_bit(1bit)，NRI/nal_reference_bit(2bits)（优先级），Type/nal_unit_type(5bits)（类型）。
@@ -54,7 +54,7 @@ NAL Header 由三部分组成，F/forbidden_bit(1bit)，NRI/nal_reference_bit(2b
 +---------------+ 
 ```
 
-<img src="/images/posts/H.264/h264-nalheader-02.png"></img>
+<img src="/images/posts/h264/h264-nalheader-02.png"></img>
 
 比较经常会用到的 NALU 类型有：
 ```bash
@@ -72,7 +72,7 @@ PPS图像参数集 （包括一个图像的所有分片的所有相关信息， 
 ### 分片(Slice)
 我们可以理解为一 张/帧 图片可以包含一个或多个分片(Slice)，而每一个分片(Slice)包含整数个宏块(Macroblock)，即每片（Slice）至少一个宏块(Macroblock)。 ```Slice = Slice Header + Slice Data```
 
-<img src="/images/posts/H.264/slice.png"></img>
+<img src="/images/posts/h264/slice.png"></img>
 
 1. 分片头中包含着分片类型、分片中的宏块类型、分片帧的数量、分片属于那个图像以及对应的帧的设置和参数等信息。
 2. 分片数据中则是宏块，这里就是我们要找的存储像素数据的地方。
@@ -90,7 +90,7 @@ PPS图像参数集 （包括一个图像的所有分片的所有相关信息， 
 
 ### 宏块(Macroblock)
 宏块是视频信息的主要承载者。一个宏块由一个16×16亮度像素和附加的一个8×8 Cb和一个 8×8 Cr 彩色像素块组成。每个图象中，若干宏块被排列成片的形式。
-<img src="/images/posts/H.264/macroblock.png"></img>
+<img src="/images/posts/h264/macroblock.png"></img>
 
 **宏块分类**：
 | 宏块分类 | 说明 | 
