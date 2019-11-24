@@ -28,8 +28,8 @@ volumes:
 ### 例子
 比如 ```COPY``` 了另外一个配置文件 ```test.json``` 到 /myproject/config1/目录下，然后通过上面的 configMap 方式挂载主要的配置文件 config.json 到 ```/myproject/config1/config.json``` ，结果config1下原本的 ```test.json``` 被删除了。
 
-<img src="/images/posts/configmap/configmap-01.png"></img>
-<img src="/images/posts/configmap/configmap-02.png"></img>
+<img src="/images/posts/configmap/configmap-01.png">
+<img src="/images/posts/configmap/configmap-02.png">
 
 ## 解决方法
 如何才能够以文件的方式来挂载 configMap 中的配置呢？怎么把 configMap 中的配置挂载到 ```/myproject/config1/config.json``` 并且不删除 ```/myproject/config1/``` 目录下的其他配置呢？可以通过 subPath 来实现，添加 ```subPath: config.json``` 配置，同时需要修改 mountPath， ```mountPath: /myproject/config1/``` -> ```mountPath: /myproject/config1/config.json```  详见如下配置：
@@ -51,4 +51,4 @@ volumes:
 ```
 
 通过这种方式挂载后是不会删除 ```/myproject/config1/``` 目录下的其他配置的。
-<img src="/images/posts/configmap/configmap-03.png"></img>
+<img src="/images/posts/configmap/configmap-03.png">

@@ -27,10 +27,10 @@ keywords: wireshark, filter
     tcp.port == 9696
     ```
 
-    <img src="/images/wiki/wireshark/filter-save01.png"></img>
+    <img src="/images/wiki/wireshark/filter-save01.png">
 
 ## “Export Specified Packets” 保存过滤后的报文为单独的文件
 File -> Export Specified Packets -> Displayed， 这样可以只保存过滤后报文
 
-<img src="/images/wiki/wireshark/filter-save02.png"></img>
-<img src="/images/wiki/wireshark/filter-save03.png"></img>
+<img src="/images/wiki/wireshark/filter-save02.png">
+<img src="/images/wiki/wireshark/filter-save03.png">
