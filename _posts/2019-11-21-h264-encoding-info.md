@@ -93,6 +93,7 @@ PPS图像参数集 （包括一个图像的所有分片的所有相关信息， 
 <img src="/images/posts/h264/macroblock.png">
 
 #### 宏块分类  
+
 | 宏块分类 | 说明 | 
 | :----- | :----- | 
 | I Macroblock | 利用从当前片中已解码的像素作为参考进行帧内预测 |
@@ -101,13 +102,15 @@ PPS图像参数集 （包括一个图像的所有分片的所有相关信息， 
 
 ### I,P,B帧与 PTS/DTS  
 #### 帧的分类  
+
 | 帧的分类 | 名称 | 说明 | 
 | :----- | :----- | :----- | 
 | I帧 | 帧内编码帧,又称intra picture | 自身可以通过视频解压算法解压成一张单独的完整的图片 |
 | P帧 | 前向预测编码帧,又称predictive-frame | 需要参考其前面的一个I frame 或者B frame来生成一张完整的图片 |
-| I帧 | 双向预测帧,又称bi-directional interpolated prediction frame | 则要参考其前一个I或者P帧及其后面的一个P帧来生成一张完整的图片 |
+| I帧 | 双向预测帧,又称bi-directional interpolated prediction frame | 要参考其前一个I或者P帧及其后面的一个P帧来生成一张完整的图片 |
   
 #### PTS/DTS  
+
 | 名称 | 说明 | 
 | :----- | :----- | 
 | PTS(Presentation Time Stamp) | PTS主要用于度量解码后的视频帧什么时候被显示出来 |
