@@ -134,9 +134,58 @@ H.264 引入 IDR 图像是为了解码的重同步，当解码器解码到 IDR �
 ## 附录
 
 ### 将一张图片转成 H.264 视频
+
 ```bash
 ffmpeg -i minimal.png -pix_fmt yuv420p minimal_yuv420.h264
 ```
+
+### 使用 mediainfo 查看 h264 文件信息
+
+```bash
+➜ mediainfo minimal_yuv420.h264
+General
+Complete name                            : minimal_yuv420.h264
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+File size                                : 1.23 KiB
+Duration                                 : 40 ms
+Overall bit rate                         : 252 kb/s
+Writing library                          : x264 core 157 r2969 d4099dd
+Encoding settings                        : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex / subme=7 / psy=1 / psy_rd=1.00:0.00 / mixed_ref=1 / me_range=16 / chroma_me=1 / trellis=1 / 8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=-2 / threads=2 / lookahead_threads=1 / sliced_threads=0 / nr=0 / decimate=1 / interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=3 / b_pyramid=2 / b_adapt=1 / b_bias=0 / direct=1 / weightb=1 / open_gop=0 / weightp=2 / keyint=250 / keyint_min=25 / scenecut=40 / intra_refresh=0 / rc_lookahead=40 / rc=crf / mbtree=1 / crf=23.0 / qcomp=0.60 / qpmin=0 / qpmax=69 / qpstep=4 / ip_ratio=1.40 / aq=1:1.00
+
+Video
+Format                                   : AVC
+Format/Info                              : Advanced Video Codec
+Format profile                           : High@L1
+Format settings                          : CABAC / 4 Ref Frames
+Format settings, CABAC                   : Yes
+Format settings, Reference frames        : 4 frames
+Duration                                 : 40 ms
+Width                                    : 64 pixels
+Height                                   : 64 pixels
+Display aspect ratio                     : 1.000
+Frame rate mode                          : Variable
+Frame rate                               : 25.000 FPS
+Color space                              : YUV
+Chroma subsampling                       : 4:2:0
+Bit depth                                : 8 bits
+Scan type                                : Progressive
+Writing library                          : x264 core 157 r2969 d4099dd
+Encoding settings                        : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex / subme=7 / psy=1 / psy_rd=1.00:0.00 / mixed_ref=1 / me_range=16 / chroma_me=1 / trellis=1 / 8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=-2 / threads=2 / lookahead_threads=1 / sliced_threads=0 / nr=0 / decimate=1 / interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=3 / b_pyramid=2 / b_adapt=1 / b_bias=0 / direct=1 / weightb=1 / open_gop=0 / weightp=2 / keyint=250 / keyint_min=25 / scenecut=40 / intra_refresh=0 / rc_lookahead=40 / rc=crf / mbtree=1 / crf=23.0 / qcomp=0.60 / qpmin=0 / qpmax=69 / qpstep=4 / ip_ratio=1.40 / aq=1:1.00
+```
+
+### 使用 hexdump 查看二进制数据
+
+```bash
+➜  hexdump minimal_yuv420.h264
+0000000 00 00 00 01 67 64 08 0a ac d9 44 26 84 00 00 03
+0000010 00 04 00 00 03 00 c8 3c 48 96 58 00 00 00 01 68
+0000020 eb e3 cb 22 c0 00 00 01 06 05 ff ff aa dc 45 e9
+0000030 bd e6 d9 48 b7 96 2c d8 20 d9 23 ee ef 78 32 36
+0000040 34 20 2d 20 63 6f 72 65 20 31 35 37 20 72 32 39
+0000050 36 39 20 64 34 30 39 39 64 64 20 2d 20 48 2e 32
+.........
+```bash
 
 ### 下载测试视频
 要学习 H.264 编码，就需要有用 H.264 编码的视频 demo 来测试，可以用 [you-get](https://github.com/soimort/you-get) 工具到主流的一些视频网站下载个视频来测试。
@@ -181,18 +230,21 @@ ffmpeg -i input.flv -vcodec copy -acodec copy output.mp4
 
 #### 将视频转换为非压缩的裸视频
 将视频 ```input.mp4``` 转换为 ```pix_fmt nv12``` yuv 的裸视频 ```output.yuv``` ， 裸视频可以作为后续视频编码的 input 。
+
 ```bash
 ffmpeg -i input.mp4 -vcodec rawvideo -vframes 100 -pix_fmt nv12 -an output.yuv
 ```
 
 #### flv 转 h264
 将视频 ```input.flv``` 转换为 ```output.h264```
+
 ```bash
 ffmpeg -i input.flv -vcodec copy output.h264
 ```
 
 #### mp4 转 mkv
 将视频 ```input.mp4``` 转换为 ```output.mkv```
+
 ```bash
 ffmpeg -i input.mp4 -vcodec copy -acodec copy output.mkv
 ```
