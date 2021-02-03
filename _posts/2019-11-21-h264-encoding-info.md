@@ -6,7 +6,7 @@ description: H.264 编码基础知识
 keywords: H.264
 ---
 
-说明，以下内容很多参考 [从零了解H.264结构](http://www.iosxxx.com/blog/2017-08-09-%E4%BB%8E%E9%9B%B6%E4%BA%86%E8%A7%A3H.264%E7%BB%93%E6%9E%84.html)
+说明，以下内容很多参考 [从零了解H.264结构](http://www.iosxxx.com/blog/2017-08-09-%E4%BB%8E%E9%9B%B6%E4%BA%86%E8%A7%A3H264%E7%BB%93%E6%9E%84.html)
 
 
 ## 基本资料
@@ -107,7 +107,7 @@ PPS图像参数集 （包括一个图像的所有分片的所有相关信息， 
 | :----- | :----- | :----- | 
 | I帧 | 帧内编码帧,又称intra picture | 自身可以通过视频解压算法解压成一张单独的完整的图片 |
 | P帧 | 前向预测编码帧,又称predictive-frame | 需要参考其前面的一个I frame 或者B frame来生成一张完整的图片 |
-| I帧 | 双向预测帧,又称bi-directional interpolated prediction frame | 要参考其前一个I或者P帧及其后面的一个P帧来生成一张完整的图片 |
+| B帧 | 双向预测帧,又称bi-directional interpolated prediction frame | 要参考其前一个I或者P帧及其后面的一个P帧来生成一张完整的图片 |
   
 #### PTS/DTS  
 
@@ -185,7 +185,7 @@ Encoding settings                        : cabac=1 / ref=3 / deblock=1:0:0 / ana
 0000040 34 20 2d 20 63 6f 72 65 20 31 35 37 20 72 32 39
 0000050 36 39 20 64 34 30 39 39 64 64 20 2d 20 48 2e 32
 .........
-```bash
+```
 
 ### 下载测试视频
 要学习 H.264 编码，就需要有用 H.264 编码的视频 demo 来测试，可以用 [you-get](https://github.com/soimort/you-get) 工具到主流的一些视频网站下载个视频来测试。

@@ -34,3 +34,7 @@ File -> Export Specified Packets -> Displayed， 这样可以只保存过滤后�
 
 <img src="/images/wiki/wireshark/filter-save02.png">
 <img src="/images/wiki/wireshark/filter-save03.png">
+
+## 非常规端口服务Decode
+比如 RTSP 的默认端口是554，采用554端口提供服务抓的包， Wireshark才能够解析为 RTSP，对于非554端口的 RTSP 服务，Wireshark 只会解析到 TCP/UDP。如果能够让 Wireshark 能够对非 554 端口的服务的 RTSP 报文做解析呢？ 
+点击右键 -> Decode As，填写TCP端口以及想解析的协议。

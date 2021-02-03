@@ -1,8 +1,8 @@
 ---
 layout: post
-title: RTSP 认证
+title: RTSP 鉴权认证
 categories: rtsp
-description: RTSP 认证
+description: RTSP 鉴权认证
 keywords: rtsp, authentication
 ---
 
@@ -11,7 +11,7 @@ keywords: rtsp, authentication
 RTSP 的认证基本认证 ```basic authentication``` 和摘要认证 ```digest authentication``` 。摘要认证是 http 1.1 提出的基本认证的替代方案，其消息经过 MD5 哈希转换因此具有更高的安全性。
 
 ## 交互过程
-1. DESCRIBE 环节，客户发送与不需要认证一样的请求。服务器端返回401错误，提示未认证，并且在响应报文里面返回 nonce 。
+### DESCRIBE 环节，客户发送与不需要认证一样的请求。服务器端返回401错误，提示未认证，并且在响应报文里面返回 nonce 。  
 **DESCRIBE Request**
 
 ```bash
@@ -32,7 +32,7 @@ CSeq: 2
 WWW-Authenticate: Digest realm="Login to 4M05CC9FAC28B0B", nonce="c5cdebfb791630ad189ac43081c7c01e"
 ```
 
-2. DESCRIBE 环节，客户端以用户名，密码，nonce，请求方法（OPTIONS/DESCRIBE/SETUP/PLAY），请求的 URI 等信息为基础产生 response 信息进行反馈：
+### DESCRIBE 环节，客户端以用户名，密码，nonce，请求方法（OPTIONS/DESCRIBE/SETUP/PLAY），请求的 URI 等信息为基础产生 response 信息进行反馈：
 **DESCRIBE Request**
 
 ```bash
@@ -79,11 +79,10 @@ WWW-Authenticate: Digest realm="Login to 4M05CC9FAC28B0B", nonce="f015500fc59446
 - realm： 通常一个 server 对应一个 realm
 - method：请求方法（OPTIONS/DESCRIBE/SETUP/PLAY）
 - requestUri： 请求的 uri
-- nonce： 随机字符串，通常一个 session 对应一个 nonce
+- nonce： 随机字符串，通常一个 session 对应一个 nonce
 
 
-
-3. SETUP, PLAY 阶段用相同的方式进行认证
+### SETUP, PLAY 阶段用相同的方式进行认证
 
 
 
